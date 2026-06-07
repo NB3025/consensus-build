@@ -1,0 +1,8 @@
+{
+  "name": "consensus-build",
+  "description": "한 줄 기능 설명으로 기능정의서 + 구현 계획 + 코드 구현까지 자동 완주. Agent Teams 3명이 CRITICAL/MAJOR 이슈가 없을 때까지 자율 반복 검토(consensus).",
+  "version": "2.0.0",
+  "author": {
+    "name": "NB3025"
+  }
+}

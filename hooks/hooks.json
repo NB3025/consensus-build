@@ -1,0 +1,37 @@
+{
+  "description": "consensus-build pipeline hooks — Stop hook blocks exit until the pipeline completes; PostToolUse hooks track test pass/fail streaks during Phase 6. All hooks are guarded by the state file (.claude/consensus-build-state.local.md) and session_id, so they no-op when the pipeline is inactive or in another session.",
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/stop-hook.sh\""
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/test-success-hook.sh\""
+          }
+        ]
+      }
+    ],
+    "PostToolUseFailure": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/test-fail-hook.sh\""
+          }
+        ]
+      }
+    ]
+  }
+}

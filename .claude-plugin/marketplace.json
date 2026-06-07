@@ -1,0 +1,15 @@
+{
+  "name": "consensus-build-marketplace",
+  "owner": {
+    "name": "NB3025"
+  },
+  "description": "consensus-build 플러그인 마켓플레이스 — 기능정의서·구현계획·코드 구현 자동 파이프라인",
+  "plugins": [
+    {
+      "name": "consensus-build",
+      "source": { "source": "github", "repo": "NB3025/consensus-build" },
+      "description": "한 줄 기능 설명으로 기능정의서 + 구현 계획 + 코드 구현까지 자동 완주. Agent Teams 3명이 CRITICAL/MAJOR 이슈가 없을 때까지 자율 반복 검토(consensus).",
+      "category": "development"
+    }
+  ]
+}

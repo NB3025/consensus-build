@@ -12,7 +12,9 @@
 </p>
 
 ```text
-"이미지 업로드하면 자동 태깅"   ← 한 줄 입력
+한 줄 요구사항  ┐
+   또는        ├──▶ 입력
+기존 문서 파일  ┘
         │
         ▼
   기능정의서 ──▶ 🔍 리뷰 (Agent 3명 합의)
@@ -72,8 +74,14 @@
 ### 예시
 
 ```
-/consensus-build:build 사용자가 이미지를 업로드하면 자동으로 태그를 다는 기능
-/consensus-build:build sonnet review-spec docs/feature-spec-image-tagging.md
+# 요구사항을 한 줄 텍스트로 입력 (전체 파이프라인)
+/consensus-build:build 사용자가 할 일을 등록·완료 처리하고 마감일 알림을 받는 기능
+
+# 기존 기능정의서를 파일로 전달 (계획+구현)
+/consensus-build:build plan docs/feature-spec-todo.md
+
+# 기존 기능정의서를 파일로 전달해 리뷰만 (sonnet 사용)
+/consensus-build:build sonnet review-spec docs/feature-spec-todo.md
 ```
 
 ## 🔄 작동 방식

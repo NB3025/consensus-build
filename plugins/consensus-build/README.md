@@ -41,13 +41,13 @@
 ## ⚡ 설치
 
 ```
-/plugin marketplace add https://github.com/NB3025/consensus-build.git
+/plugin marketplace add NB3025/consensus-build
 /plugin install consensus-build@consensus-build-marketplace
 ```
 
-> HTTPS `.git` URL을 사용하면 SSH 키가 없는 환경에서도 public repo를 익명으로 clone합니다. `owner/repo` 단축형(`NB3025/consensus-build`)도 동작하지만, 일부 환경에서 SSH(`git@github.com:`)로 clone을 시도해 `Permission denied (publickey)`로 실패할 수 있어 HTTPS URL을 권장합니다.
+> 플러그인 본체가 마켓플레이스 repo 안(`plugins/consensus-build/`)에 함께 들어 있고, `marketplace.json`이 이를 상대경로(`./plugins/consensus-build`)로 가리킵니다. 따라서 마켓플레이스를 add할 때 받은 로컬 사본에서 플러그인을 바로 읽어, **별도 git clone 없이 SSH 키가 없어도 설치**됩니다.
 >
-> 포크했다면 본인 경로로 바꾸고, `.claude-plugin/marketplace.json`의 `source.url`도 함께 수정하세요.
+> 포크했다면 `marketplace add`의 `owner/repo`만 본인 경로로 바꾸면 됩니다. 플러그인 source는 상대경로라 그대로 동작합니다.
 
 ## 🚀 사용법
 
@@ -145,6 +145,8 @@ flowchart TD
 - 멈춰서 묻기 — 불명확한 요구사항도 보수적으로 자율 판단하고 `decisions-log.md`에 남깁니다.
 
 ## 🔧 로컬에서 검증
+
+repo 루트(`marketplace.json`이 있는 곳)에서 실행합니다.
 
 ```
 claude plugin validate .

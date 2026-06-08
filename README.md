@@ -41,11 +41,13 @@
 ## ⚡ 설치
 
 ```
-/plugin marketplace add NB3025/consensus-build
+/plugin marketplace add https://github.com/NB3025/consensus-build.git
 /plugin install consensus-build@consensus-build-marketplace
 ```
 
-> `NB3025/consensus-build`는 이 저장소의 GitHub `owner/repo`입니다. 포크했다면 본인 경로로 바꾸고, `.claude-plugin/marketplace.json`의 `source.repo`도 함께 수정하세요.
+> HTTPS `.git` URL을 사용하면 SSH 키가 없는 환경에서도 public repo를 익명으로 clone합니다. `owner/repo` 단축형(`NB3025/consensus-build`)도 동작하지만, 일부 환경에서 SSH(`git@github.com:`)로 clone을 시도해 `Permission denied (publickey)`로 실패할 수 있어 HTTPS URL을 권장합니다.
+>
+> 포크했다면 본인 경로로 바꾸고, `.claude-plugin/marketplace.json`의 `source.url`도 함께 수정하세요.
 
 ## 🚀 사용법
 

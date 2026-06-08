@@ -7,7 +7,7 @@
   "plugins": [
     {
       "name": "consensus-build",
-      "source": { "source": "github", "repo": "NB3025/consensus-build" },
+      "source": { "source": "url", "url": "https://github.com/NB3025/consensus-build.git" },
       "description": "한 줄 기능 설명으로 기능정의서 + 구현 계획 + 코드 구현까지 자동 완주. Agent Teams 3명이 CRITICAL/MAJOR 이슈가 없을 때까지 자율 반복 검토(consensus).",
       "category": "development"
     }

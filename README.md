@@ -89,16 +89,12 @@
 전체 파이프라인은 8개 Phase를 순서대로 완주합니다. 리뷰 단계는 이슈가 없을 때까지 자율 반복합니다.
 
 ```mermaid
-flowchart TD
-    P0([Phase 0<br/>초기화]) --> P1[Phase 1<br/>기능정의서 초안]
-    P1 --> P2{Phase 2<br/>기능정의서 리뷰<br/>Agent 3명 합의}
-    P2 -->|CRITICAL/MAJOR 남음| P2
-    P2 -->|PASS| P3[Phase 3<br/>구현 계획 생성]
-    P3 --> P4{Phase 4<br/>구현 계획 리뷰<br/>Agent 3명 합의}
-    P4 -->|CRITICAL/MAJOR 남음| P4
-    P4 -->|PASS| P5[Phase 5<br/>Needs Review 자율 판단]
-    P5 --> P6[Phase 6<br/>TDD-Tidy 코드 구현]
-    P6 --> P7([Phase 7<br/>학습 정리 · 최종 보고])
+flowchart LR
+    P1[📝 기능정의서] --> P2{🔍 리뷰}
+    P2 -.->|이슈 남음| P2
+    P2 -->|PASS| P3[🗂 구현 계획] --> P4{🔍 리뷰}
+    P4 -.->|이슈 남음| P4
+    P4 -->|PASS| P6[⚙️ 코드 구현] --> P7([✅ 완료])
 ```
 
 | 단계 | 하는 일 |

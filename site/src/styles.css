@@ -1,0 +1,168 @@
+:root {
+  --bg: #0f1117;
+  --panel-bg: #171a23;
+  --ink: #e7e9f0;
+  --muted: #9aa0b4;
+  --accent: #8a7bff;
+  --accent-2: #38d39f;
+  --border: #2a2e3c;
+}
+
+* { box-sizing: border-box; }
+
+html, body, #root {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji";
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.hero {
+  text-align: center;
+  padding: 22px 12px 10px;
+}
+.hero h1 {
+  margin: 0 0 6px;
+  font-size: 1.6rem;
+  letter-spacing: -0.02em;
+}
+.hero p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.flow-wrap {
+  flex: 1 1 auto;
+  min-height: 320px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  background: #0c0e14;
+}
+
+/* React Flow 노드 */
+.stage-node {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 200px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: var(--panel-bg);
+  border: 1.5px solid var(--border);
+  color: var(--ink);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.stage-emoji { font-size: 1.7rem; line-height: 1; }
+.stage-title { font-weight: 700; font-size: 0.95rem; }
+.stage-desc { color: var(--muted); font-size: 0.72rem; margin-top: 3px; line-height: 1.3; }
+
+/* 종류별 좌측 강조색 */
+.kind-input  { border-left: 4px solid #6ea8fe; }
+.kind-doc    { border-left: 4px solid var(--accent); }
+.kind-review { border-left: 4px solid #ffcf5c; }
+.kind-fix    { border-left: 4px solid #ff8a8a; }
+.kind-build  { border-left: 4px solid var(--accent-2); }
+.kind-done   { border-left: 4px solid var(--accent-2); background: #14241d; }
+
+/* 새로 등장한 노드 강조 */
+.react-flow__node.fresh .stage-node {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(138, 123, 255, 0.25), 0 6px 22px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+}
+
+/* 엣지 라벨 */
+.react-flow__edge-text { fill: var(--ink); font-size: 11px; }
+.react-flow__edge-textbg { fill: var(--bg); }
+.edge-pass .react-flow__edge-path { stroke: var(--accent-2); stroke-width: 2; }
+.edge-loop .react-flow__edge-path { stroke: #ff8a8a; stroke-width: 2; }
+.edge-flow .react-flow__edge-path { stroke: #6b7184; stroke-width: 2; }
+
+/* 단계 패널 */
+.panel {
+  margin: 12px 0;
+  padding: 16px 18px;
+  background: var(--panel-bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+.panel-step {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  font-weight: 700;
+}
+.panel-title { font-size: 1.15rem; font-weight: 700; margin: 4px 0 6px; }
+.panel-body { color: var(--muted); font-size: 0.92rem; line-height: 1.55; min-height: 3.1em; }
+
+.panel-controls {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+.panel-controls button {
+  font: inherit;
+  padding: 9px 18px;
+  border-radius: 9px;
+  border: 1px solid var(--border);
+  background: #20232f;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background 0.15s ease, opacity 0.15s ease;
+}
+.panel-controls button:hover:not(:disabled) { background: #2a2e3c; }
+.panel-controls button:disabled { opacity: 0.4; cursor: default; }
+.panel-controls .primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  font-weight: 700;
+}
+.panel-controls .primary:hover { background: #7a69ff; }
+
+.dots {
+  display: flex;
+  gap: 7px;
+  margin-top: 14px;
+  justify-content: center;
+}
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--border);
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+.dot.done { background: #4a4f63; }
+.dot.active { background: var(--accent); transform: scale(1.35); }
+
+.foot {
+  text-align: center;
+  padding: 4px 0 18px;
+}
+.foot a { color: var(--muted); text-decoration: none; font-size: 0.85rem; }
+.foot a:hover { color: var(--accent); }
+
+@media (max-width: 640px) {
+  .hero h1 { font-size: 1.3rem; }
+  .panel-body { min-height: 4.5em; }
+}

@@ -1,3 +1,9 @@
 .DS_Store
 *.local.md
 *.local
+
+# site/ (인터랙티브 다이어그램 소스) 빌드 의존성·산출물
+node_modules/
+site/node_modules/
+site/dist/
+site/verify.mjs

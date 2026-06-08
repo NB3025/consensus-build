@@ -13,13 +13,19 @@ import '@xyflow/react/dist/style.css'
 import { nodes as NODE_DEFS, edges as EDGE_DEFS, steps as STEPS } from './steps.js'
 
 // 커스텀 노드 — 이모지 + 제목 + 설명. kind별 색을 data-kind로 CSS에서 처리.
+// 각 변마다 source/target 핸들을 둬서(8개) 엣지가 깔끔히 흐르게 한다.
+// 핸들 id 규칙: 변(l/r/t/b) + 역할(s=source, t=target).
 function StageNode({ data }) {
   return (
     <div className={`stage-node kind-${data.kind}`}>
-      <Handle type="target" position={Position.Left} />
-      <Handle type="source" position={Position.Right} />
-      <Handle type="target" position={Position.Top} id="t" />
-      <Handle type="source" position={Position.Top} id="s" />
+      <Handle type="source" id="ls" position={Position.Left} />
+      <Handle type="target" id="lt" position={Position.Left} />
+      <Handle type="source" id="rs" position={Position.Right} />
+      <Handle type="target" id="rt" position={Position.Right} />
+      <Handle type="source" id="ts" position={Position.Top} />
+      <Handle type="target" id="tt" position={Position.Top} />
+      <Handle type="source" id="bs" position={Position.Bottom} />
+      <Handle type="target" id="bt" position={Position.Bottom} />
       <div className="stage-emoji">{data.emoji}</div>
       <div className="stage-text">
         <div className="stage-title">{data.title}</div>
@@ -78,12 +84,16 @@ function FlowApp() {
         id: e.id,
         source: e.source,
         target: e.target,
+        sourceHandle: e.sh,
+        targetHandle: e.th,
         label: e.label,
-        sourceHandle: e.loop ? 's' : undefined,
-        targetHandle: e.loop ? 't' : undefined,
+        type: 'smoothstep',
         animated: !!e.loop,
-        markerEnd: { type: MarkerType.ArrowClosed },
+        markerEnd: { type: MarkerType.ArrowClosed, width: 16, height: 16 },
+        style: { strokeDasharray: '6 4' },
         className: e.pass ? 'edge-pass' : e.loop ? 'edge-loop' : 'edge-flow',
+        labelBgPadding: [6, 3],
+        labelBgBorderRadius: 4,
       })),
     [edgeIds],
   )
@@ -124,7 +134,7 @@ function FlowApp() {
           maxZoom={1.5}
         >
           <FitOnStep step={step} />
-          <Background gap={20} color="#e6e6ef" />
+          <Background variant="dots" gap={22} size={1.4} color="#d3d7e0" />
           <Controls showInteractive={false} />
         </ReactFlow>
       </div>

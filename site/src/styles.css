@@ -1,11 +1,9 @@
 :root {
-  --bg: #0f1117;
-  --panel-bg: #171a23;
-  --ink: #e7e9f0;
-  --muted: #9aa0b4;
-  --accent: #8a7bff;
-  --accent-2: #38d39f;
-  --border: #2a2e3c;
+  --bg: #ffffff;
+  --ink: #1f2430;
+  --muted: #6b7180;
+  --accent: #6b6bff;
+  --border: #d7dae3;
 }
 
 * { box-sizing: border-box; }
@@ -34,11 +32,12 @@ body {
 
 .hero {
   text-align: center;
-  padding: 22px 12px 10px;
+  padding: 20px 12px 8px;
 }
 .hero h1 {
   margin: 0 0 6px;
   font-size: 1.6rem;
+  font-weight: 800;
   letter-spacing: -0.02em;
 }
 .hero p {
@@ -49,58 +48,69 @@ body {
 
 .flow-wrap {
   flex: 1 1 auto;
-  min-height: 320px;
+  min-height: 340px;
   border: 1px solid var(--border);
   border-radius: 14px;
   overflow: hidden;
-  background: #0c0e14;
+  background: #fcfcfe;
 }
 
-/* React Flow 노드 */
+/* React Flow 노드 — Ralph 풍: 흰 카드 + 색 테두리 + 둥근 모서리 */
 .stage-node {
   display: flex;
   align-items: center;
-  gap: 10px;
-  width: 200px;
-  padding: 12px 14px;
-  border-radius: 12px;
-  background: var(--panel-bg);
-  border: 1.5px solid var(--border);
+  gap: 11px;
+  width: 210px;
+  padding: 13px 15px;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 2px solid var(--border);
   color: var(--ink);
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  box-shadow: 0 2px 6px rgba(20, 25, 40, 0.06);
+  transition: box-shadow 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
 }
 .stage-emoji { font-size: 1.7rem; line-height: 1; }
-.stage-title { font-weight: 700; font-size: 0.95rem; }
-.stage-desc { color: var(--muted); font-size: 0.72rem; margin-top: 3px; line-height: 1.3; }
+.stage-title { font-weight: 700; font-size: 0.96rem; }
+.stage-desc { color: var(--muted); font-size: 0.74rem; margin-top: 3px; line-height: 1.3; }
 
-/* 종류별 좌측 강조색 */
-.kind-input  { border-left: 4px solid #6ea8fe; }
-.kind-doc    { border-left: 4px solid var(--accent); }
-.kind-review { border-left: 4px solid #ffcf5c; }
-.kind-fix    { border-left: 4px solid #ff8a8a; }
-.kind-build  { border-left: 4px solid var(--accent-2); }
-.kind-done   { border-left: 4px solid var(--accent-2); background: #14241d; }
+/* 종류별 색 (Ralph의 파스텔 카드 느낌) */
+.kind-input  { border-color: #8fb6ff; background: #eef4ff; }
+.kind-doc    { border-color: #b3a6ff; background: #f1eeff; }
+.kind-review { border-color: #ffd66b; background: #fff8e6; }
+.kind-fix    { border-color: #ff9d9d; background: #fff0f0; }
+.kind-build  { border-color: #6fd6a8; background: #ecfbf3; }
+.kind-done   { border-color: #4ec98a; background: #e7f9ef; }
 
 /* 새로 등장한 노드 강조 */
 .react-flow__node.fresh .stage-node {
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(138, 123, 255, 0.25), 0 6px 22px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 0 4px rgba(107, 107, 255, 0.18), 0 6px 16px rgba(20, 25, 40, 0.12);
   transform: translateY(-2px);
 }
 
-/* 엣지 라벨 */
-.react-flow__edge-text { fill: var(--ink); font-size: 11px; }
-.react-flow__edge-textbg { fill: var(--bg); }
-.edge-pass .react-flow__edge-path { stroke: var(--accent-2); stroke-width: 2; }
-.edge-loop .react-flow__edge-path { stroke: #ff8a8a; stroke-width: 2; }
-.edge-flow .react-flow__edge-path { stroke: #6b7184; stroke-width: 2; }
+/* 핸들은 보이지 않게 (Ralph처럼 점만 살짝) */
+.react-flow__handle {
+  width: 6px;
+  height: 6px;
+  background: #b9bdc9;
+  border: none;
+}
+
+/* 엣지 — 검은 破線 + 화살표, Ralph 스타일 */
+.react-flow__edge-path { stroke: #3a3f4b; stroke-width: 1.6; }
+.react-flow__edge.edge-pass .react-flow__edge-path { stroke: #2fa36b; stroke-width: 2; }
+.react-flow__edge.edge-loop .react-flow__edge-path { stroke: #e06a6a; stroke-width: 2; }
+.react-flow__arrowhead { fill: #3a3f4b; }
+
+/* 엣지 라벨 박스 (Ralph의 Yes/No 박스 느낌) */
+.react-flow__edge-text { fill: #2a2f3a; font-size: 11px; font-weight: 600; }
+.react-flow__edge-textbg { fill: #ffffff; stroke: var(--border); stroke-width: 1; }
 
 /* 단계 패널 */
 .panel {
   margin: 12px 0;
   padding: 16px 18px;
-  background: var(--panel-bg);
+  background: #f7f8fb;
   border: 1px solid var(--border);
   border-radius: 14px;
 }
@@ -108,9 +118,9 @@ body {
   font-size: 0.72rem;
   letter-spacing: 0.12em;
   color: var(--accent);
-  font-weight: 700;
+  font-weight: 800;
 }
-.panel-title { font-size: 1.15rem; font-weight: 700; margin: 4px 0 6px; }
+.panel-title { font-size: 1.15rem; font-weight: 800; margin: 4px 0 6px; }
 .panel-body { color: var(--muted); font-size: 0.92rem; line-height: 1.55; min-height: 3.1em; }
 
 .panel-controls {
@@ -123,12 +133,12 @@ body {
   padding: 9px 18px;
   border-radius: 9px;
   border: 1px solid var(--border);
-  background: #20232f;
+  background: #ffffff;
   color: var(--ink);
   cursor: pointer;
   transition: background 0.15s ease, opacity 0.15s ease;
 }
-.panel-controls button:hover:not(:disabled) { background: #2a2e3c; }
+.panel-controls button:hover:not(:disabled) { background: #eef0f5; }
 .panel-controls button:disabled { opacity: 0.4; cursor: default; }
 .panel-controls .primary {
   background: var(--accent);
@@ -136,7 +146,7 @@ body {
   color: #fff;
   font-weight: 700;
 }
-.panel-controls .primary:hover { background: #7a69ff; }
+.panel-controls .primary:hover { background: #5a5aff; }
 
 .dots {
   display: flex;
@@ -152,12 +162,12 @@ body {
   cursor: pointer;
   transition: background 0.15s ease, transform 0.15s ease;
 }
-.dot.done { background: #4a4f63; }
+.dot.done { background: #a9adbb; }
 .dot.active { background: var(--accent); transform: scale(1.35); }
 
 .foot {
   text-align: center;
-  padding: 4px 0 18px;
+  padding: 4px 0 16px;
 }
 .foot a { color: var(--muted); text-decoration: none; font-size: 0.85rem; }
 .foot a:hover { color: var(--accent); }
